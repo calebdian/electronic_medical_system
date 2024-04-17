@@ -1,0 +1,117 @@
+/* Reset default margin and padding */
+body, h1, h2, h3, p, ul, li {
+ margin: 0;
+ padding: 0;
+}
+
+/* Global styles */
+body {
+ font-family: Arial, sans-serif;
+ line-height: 1.6;
+}
+
+.container {
+ max-width: 960px;
+ margin: 0 auto;
+ padding: 0 20px;
+}
+
+/* Navbar */
+.navbar {
+ background-color: #333;
+ color: #fff;
+ padding: 15px 0;
+}
+
+.navbar .container {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
+.logo {
+ font-size: 24px;
+ font-weight: bold;
+ text-decoration: none;
+ color: #fff;
+}
+
+.nav-links li {
+ display: inline;
+ margin-right: 15px;
+}
+
+.nav-links a {
+ color: #fff;
+ text-decoration: none;
+}
+
+/* Hero Section */
+.hero {
+ background-color: #f9f9f9;
+ padding: 100px 0;
+ text-align: center;
+}
+
+.hero h1 {
+ font-size: 36px;
+ margin-bottom: 20px;
+}
+
+.btn {
+ display: inline-block;
+ padding: 10px 20px;
+ background-color: #333;
+ color: #fff;
+ text-decoration: none;
+ border-radius: 5px;
+ transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+ background-color: #555;
+}
+
+/* Features Section */
+.features {
+ padding: 80px 0;
+ text-align: center;
+}
+
+.feature-item {
+ margin-bottom: 40px;
+}
+
+/* FAQ Section */
+.faq {
+ background-color: #f9f9f9;
+ padding: 80px 0;
+ text-align: center;
+}
+
+.faq-item {
+ margin-bottom: 40px;
+}
+
+/* Footer */
+.footer {
+ background-color: #333;
+ color: #fff;
+ text-align: center;
+ padding: 30px 0;
+}
+
+.social-links {
+ list-style: none;
+ padding: 0;
+}
+
+.social-links li {
+ display: inline;
+ margin-right: 10px;
+}
+
+.social-links a {
+ color: #fff;
+ text-decoration: none;
+}
