@@ -2,13 +2,15 @@ body {
  font-family: Arial, sans-serif;
  margin: 0;
  padding: 0;
- display: flex;
+}
+.body-content{
+ display: flex; 
 }
 
 .sidebar {
  width: 250px;
  height: 100vh;
- background-color: #333;
+ background-color: #007BFF; /* Update navbar background color */
  color: #fff;
  padding: 20px;
 }
@@ -40,6 +42,7 @@ body {
 .main-content {
  flex: 1;
  padding: 20px;
+
 }
 
 .top-panel {
@@ -54,7 +57,6 @@ body {
 
 .feature-content {
  background-color: #fff;
- padding: 20px;
  border: 1px solid #ddd;
  border-radius: 5px;
 }

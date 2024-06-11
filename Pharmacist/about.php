@@ -1,5 +1,19 @@
 <?php
-session_start();
+session_start(); // Start or resume session
+
+// Initialize variables
+$firstName = '';
+$email = '';
+$phone = '';
+$g = 'yes';
+// Check if user session exists and retrieve user data
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+    // Assign user data to variables
+    $firstName = $user['first_name'];
+    $email = $user['email'];
+    $phone = $user['phone'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +21,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Electronic Medical System</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         /* Modal Styling */
@@ -51,7 +65,27 @@ session_start();
             text-decoration: none;
             cursor: pointer;
         }
-        .navbar {
+        body, h1, h2, h3, p, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #fff; /* Set a light background color for the body */
+    color: #333; /* Set default text color */
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navbar */
+.navbar {
     background-color: #007BFF; /* Update navbar background color */
     color: #fff;
     padding: 15px 20px; /* Adjust padding for navbar */
@@ -87,6 +121,7 @@ session_start();
     font-weight: bold;
     text-decoration: none;
     color: #fff;
+    white-space: nowrap;
 }
 
 /* Hamburger Icon for Mobile */
@@ -123,7 +158,55 @@ session_start();
         display: block; /* Show menu icon on smaller screens */
     }
 }
-        /* Footer */
+
+/* Hero Section */
+.hero {
+    background-color: #f9f9f9;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF; /* Update button background color */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Features Section */
+.features {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.feature-item {
+    margin-bottom: 40px;
+}
+
+/* FAQ Section */
+.faq {
+    background-color: #f9f9f9;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.faq-item {
+    margin-bottom: 40px;
+}
+
+/* Footer */
 .footer {
     background-color: #007BFF; /* Update footer background color */
     color: #fff;
@@ -248,79 +331,131 @@ session_start();
 
     }
 }
-.profile-popup {
+.profile-icon-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-icon-container .fa-user-circle {
+            font-size: 2em;
+            cursor: pointer;
+        }
+
+        .profile-popup {
             display: none;
             position: absolute;
-            left: 60%;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-            z-index: 1;
-            padding: 12px;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 10px;
+            z-index: 100;
+            width: 250px;
             border-radius: 5px;
-            color:aqua;
+            color: #0056b3;
         }
-        .profile-icon-container:hover .profile-popup{
+
+        .profile-icon-container:hover .profile-popup {
             display: block;
+        }
+
+        .profile-popup p {
+            margin: 0;
+        }
+
+        .profile-popup strong {
+            display: block;
+            margin-bottom: 10px;
         }
     </style>
 </head>
+<body style="padding:0">
 
-<body style="padding:0;">
-
- <!-- Navbar -->
-    <!-- Navbar -->
-    <nav class="navbar">
-        
-            <a href="#" class="logo">EMR System</a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="dashboard.php">Dashboard</a></li>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="about.php">About</a></li>
-                <li><a href="prescribe.php">Prescription</a></li>
-                <li><a href="answerPosts.php">Answerposts</a></li>
-            </ul>
-            <div class="menu-icon" onclick="toggleMenu()">
+   <!-- Navbar -->
+ <nav class="navbar">
+    <a href="#" class="logo">EMR System</a>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="dashboard.php">Dashboard</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="about.php">About</a></li>
+        <li><a href="medication.php">Medication</a></li>
+        <li><a href="drug_inventory.php">Drug_Search</a></li>
+    </ul>
+    <div class="menu-icon" onclick="toggleMenu()">
         <svg viewBox="0 0 100 80" width="40" height="40">
             <rect width="100" height="15"></rect>
             <rect y="30" width="100" height="15"></rect>
             <rect y="60" width="100" height="15"></rect>
         </svg>
     </div>
-            <div class="profile-icon-container">
-                <i class="fas fa-user-circle fa-lg"></i>
-                <div class="profile-popup" id="profilePopup">
-                    <!-- Display doctor's details directly using PHP -->
-                    <?php
-                        // Start or resume session
-                       
+    <!-- User Profile Icon and Popup Container -->
+    <?php
 
-                        // Check if doctor session exists
-                        if (isset($_SESSION['doctor_name'], $_SESSION['doctor_email'], $_SESSION['doctor_specialization'])) {
-                            $doctor_name = $_SESSION['doctor_name'];
-                            $doctor_email = $_SESSION['doctor_email'];
-                            $doctor_specialization = $_SESSION['doctor_specialization'];
+// Check if user session exists
+if (isset($_SESSION['pharmacist_id'])) {
+    // User already logged in
+    $pharmacist_id = $_SESSION['pharmacist_id'];
 
-                            // Output doctor information
-                            echo "<p>Name: $doctor_name</p>";
-                            echo "<p>Email: $doctor_email</p>";
-                            echo "<p>Specialization: $doctor_specialization</p>";
-                            echo '<a href="profile.php">Edit Profile</a><br>';
-                            echo '<a href="logout.php">Logout</a>';
-                        } else {
-                            echo "Please log in as a doctor to access this page.";
-                        }
-                    ?>
-                </div>
-            </div>
-            <div class="logo">
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "electronic_medical_system";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "SELECT first_name, last_name, email, phone FROM pharmacist WHERE pharmacist_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $pharmacist_id);
+    $stmt->execute();
+    $stmt->bind_result($firstName, $lastName, $email, $phone);
+    $stmt->fetch();
+    $stmt->close();
+    $conn->close();
+    ?>
+    <div class="profile-icon-container">
+        <i class="fa fa-user-circle fa-lg"></i>
+        <div class="profile-popup">
+            <p><strong><?php echo $firstName . ' ' . $lastName; ?></strong></p>
+            <p>Email: <?php echo $email; ?></p>
+            <p>Phone: <?php echo $phone; ?></p>
+            <!-- Edit Profile Button -->
+            <button class="edit-profile-btn"><a href="profile.php">Edit Profile</a></button>
+        </div>
+    </div>
+    <?php
+} else {
+    ?>
+    <div class="profile-icon-container">
+        <i class="fa fa-user-circle fa-lg"></i>
+        <div class="profile-popup">
+            <p><strong>Guest User</strong></p>
+            <p>Please log in to view your profile details.</p>
+        </div>
+    </div>
+    <?php
+}
+?>
+    <div class="logo">
             <button onclick="openModal()">Signup</button>
             <button onclick="openLogin()">Login</button>
         </div>
-    </nav>
-
-
-
+</nav>
+<!-- Signup Modal -->
+<div id="loginModal" class="modal modale">
+    <div class="modal-content modale">
+        <span class="close" onclick="closeLogin()">&times;</span>
+        <!-- Include signup form here -->
+        <?php include('login.php'); ?>
+    </div>
+</div>
     <!-- About Section -->
     <section class="about">
     <div class="container">
@@ -345,8 +480,8 @@ session_start();
     </div>
 </section>
 
- <!-- Footer -->
- <footer id="contact" class="footer">
+    <!-- Footer -->
+    <footer id="contact" class="footer">
     <div class="container">
         <p>&copy; 2024 EMR System. All rights reserved.</p>
         <ul class="social-links">
@@ -360,7 +495,7 @@ session_start();
             <li><a href="#">Terms of Service</a></li>
             <li><a href="#">Privacy Policy</a></li>
             <li><a href="#">Accessibility</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="contact.php">Contact Us</a></li>
         </ul>
     </div>
 </footer>
@@ -373,14 +508,7 @@ session_start();
         <?php include('signup.php'); ?>
     </div>
 </div>
-<!-- Signup Modal -->
-<div id="loginModal" class="modal modale">
-    <div class="modal-content modale">
-        <span class="close" onclick="closeLogin()">&times;</span>
-        <!-- Include signup form here -->
-        <?php include('login.php'); ?>
-    </div>
-</div>
+
 
 <!-- JavaScript to handle modal -->
 <script>
@@ -388,7 +516,6 @@ session_start();
         var navLinks = document.getElementById("navLinks");
         navLinks.classList.toggle("show");
     }
-
     function openModal() {
         document.getElementById('signupModal').style.display = 'block';
     }

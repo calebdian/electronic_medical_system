@@ -3,123 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Include your dashboard.css -->
     <link rel="stylesheet" href="../css/dashboard.css">
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
         /* Sidebar Styling */
         .sidebar {
             height: 100vh;
-            width: 150px;
+            width: fit-content;
             position: fixed;
             top: 0;
             left: 0;
-            background-color: #2c3e50;
+            background-color: #007BFF; /* Update navbar background color */
             padding-top: 60px; /* Adjust top padding for the top panel */
-            color: #ecf0f1;
+            color: #fff;
         }
-        .sidebar h2 {
-            text-align: center;
-            color: #ecf0f1;
-            margin-bottom: 30px;
-        }
+
         .sidebar ul {
             list-style-type: none;
             padding: 0;
         }
+
         .sidebar ul li {
-            margin-bottom: 20px;
+            margin-bottom: 10px; /* Add margin between each sidebar tab */
         }
+
         .sidebar ul li a {
-            color: #ecf0f1;
+            color: #fff;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            transition: background-color 0.3s;
+            display: block;
         }
+
         .sidebar ul li a:hover {
-            background-color: #34495e;
             color: #ffcc00;
-        }
-        .sidebar ul li a .icon {
-            margin-right: 10px;
         }
         /* Top Panel Styling */
         .top-panel {
             width: 100%;
-            background-color: #34495e;
-            padding: 15px;
+            background-color: #222;
+            padding: 10px;
             text-align: center;
+            margin-bottom: 0;
             z-index: 1000; /* Ensure the top panel is above other content */
-            color: #ecf0f1;
-            position: fixed;
-            top: 0;
-            left: 0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
+
         .top-panel h2 {
             margin: 0;
+            padding: 0;
             font-size: 24px;
         }
+
         .top-panel p {
             margin: 0;
+            padding: 0;
             font-size: 14px;
         }
+
         /* Main Content Styling */
         .main-content {
             margin-left: 200px; /* Adjust margin to accommodate the sidebar width */
-            padding: 80px 20px 20px 20px;
-            background-color: #fff;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        /* Feature Content Styling */
+        .feature-content {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .main-content h1 {
-            margin-top: 0;
-            color: #2c3e50;
-        }
+
         .feature-content h2 {
-            margin-top: 0;
-            color: #34495e;
+            font-size: 20px;
+            margin-bottom: 10px;
         }
+
         .feature-content p {
-            color: #7f8c8d;
+            font-size: 16px;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
 
-<div class="top-panel">
-  
+<div class="top-panel" style="color:white;">
     <h2>EMR System</h2>
 </div>
+<div class="body-content">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Top Panel -->
+        <h2>EMR System</h2>
 
-<div class="sidebar">
-    <br>
-    <h2>EMR System</h2>
-    <ul>
-        <li><a href="dashboard.php" class="sidebar-link"><i class="fas fa-tachometer-alt icon"></i>Dashboard</a></li>
-        <li><a href="index.php" class="sidebar-link"><i class="fas fa-home icon"></i>Home</a></li>
-        <li><a href="about.php" class="sidebar-link"><i class="fas fa-home icon"></i>About</a></li>
-        <li><a href="prescribe.php" class="sidebar-link"><i class="fas fa-prescription-bottle-alt icon"></i>Prescriptions</a></li>
-        <li><a href="answerPosts.php" class="sidebar-link"><i class="fas fa-question-circle icon"></i>Answering Queries</a></li>
-        <li><a href="profile.php" class="sidebar-link"><i class="fas fa-user icon"></i>Profile</a></li>
-        <li><a href="login.php" class="sidebar-link"><i class="fas fa-sign-out-alt icon"></i>Logout</a></li>
-    </ul>
-</div>
-
-<div class="main-content" id="main-content">
-    <div class="tp">
-        <h1>Welcome, Doctor!</h1>
-        <p>Today's Date: <?php echo date('Y-m-d'); ?></p>
+        <ul>
+            <li><a href="dashboard.php" class="sidebar-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="index.php" class="sidebar-link"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.php" class="sidebar-link"><i class="fas fa-info-circle"></i> About</a></li>
+            <li><a href="approval.php" class="sidebar-link"><i class="fas fa-check-circle"></i> Approved Records</a></li>
+            <li><a href="checkQueries.php" class="sidebar-link"><i class="fas fa-search"></i> Check Queries</a></li>
+            <li><a href="profile.php" class="sidebar-link"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="login.php" class="sidebar-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
     </div>
-    <div class="feature-content">
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Panel -->
+        <div class="tp-panel">
+            <h1>Welcome, Admin!</h1>
+            <p>Today's Date: <?php echo date('Y-m-d'); ?></p>
+        </div>
+        <!-- Feature Content Area -->
+     <div class="feature-content">
         <h2>Medical Records</h2>
         <p>Your medical records will be displayed here.</p>
+    </div>
     </div>
 </div>
 
@@ -139,15 +139,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Handle special case for Dashboard link
                 // Reset the main content area to its original content
                 var originalContent = `
-                    <div class="tp">
-                        <h1>Welcome, Doctor!</h1>
-                        <p>Today's Date: ${new Date().toISOString().slice(0, 10)}</p>
-                    </div>
-                    <div class="feature-content">
-                        <h2>Medical Records</h2>
-                        <p>Your medical records will be displayed here.</p>
-                    </div>
-                `;
+                <div class="main-content" style='text-align:left;'>
+                <!-- Top Panel -->
+                <div class="tp-panel">
+                    <h1>Welcome, Admin!</h1>
+                    <p>Today's Date: <?php echo date('Y-m-d'); ?></p>
+                </div>
+                <!-- Feature Content Area -->
+                <div class="feature-content">
+                    <h2>Medical Records</h2>
+                    <p>Your medical records will be displayed here.</p>
+                </div>
+            </div>
+            </div>
+                            `;
                 document.querySelector('.main-content').innerHTML = originalContent;
             } else {
                 // Fetch content from the specified URL using AJAX

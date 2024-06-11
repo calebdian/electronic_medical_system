@@ -8,6 +8,9 @@ body, h1, h2, h3, p, ul, li {
 body {
  font-family: Arial, sans-serif;
  line-height: 1.6;
+ background-color: #fff; /* Set a light background color for the body */
+ color: #333; /* Set default text color */
+ padding: 0;
 }
 
 .container {
@@ -18,7 +21,7 @@ body {
 
 /* Navbar */
 .navbar {
- background-color: #333;
+ background-color: #007BFF; /* Update navbar background color */
  color: #fff;
  padding: 15px 0;
 }
@@ -61,7 +64,7 @@ body {
 .btn {
  display: inline-block;
  padding: 10px 20px;
- background-color: #333;
+ background-color: #007BFF; /* Update button background color */
  color: #fff;
  text-decoration: none;
  border-radius: 5px;
@@ -69,7 +72,7 @@ body {
 }
 
 .btn:hover {
- background-color: #555;
+ background-color: #0056b3; /* Darker shade on hover */
 }
 
 /* Features Section */
@@ -95,7 +98,7 @@ body {
 
 /* Footer */
 .footer {
- background-color: #333;
+ background-color: #007BFF; /* Update footer background color */
  color: #fff;
  text-align: center;
  padding: 30px 0;

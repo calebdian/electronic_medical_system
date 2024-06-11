@@ -1,9 +1,9 @@
 <?php
 // Database connection details
 $servername = "localhost";
-$username = "your_username";
-$password = "your_password";
-$dbname = "your_database_name";
+$username = "root";
+$password = "";
+$dbname = "electronic_medical_system";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,17 +14,28 @@ if ($conn->connect_error) {
 }
 
 // Retrieve form data
-$name = $_POST['name'];
+$first_name = $_POST['first_name'];
+$last_name = $_POST['last_name'];
 $email = $_POST['email'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Hash password for security
 $specialization = $_POST['specialization'];
 
-// SQL query to insert data into Doctors table
-$sql = "INSERT INTO Doctors (name, email, password, specialization) 
-        VALUES ('$name', '$email', '$password', '$specialization')";
+// SQL query to insert data into medics table
+$sql = "INSERT INTO medics (first_name, last_name, email, password, specialization) 
+        VALUES ('$first_name', '$last_name', '$email', '$password', '$specialization')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Doctor account created successfully";
+    // Start a session
+    session_start();
+
+    // Store doctor details in session variables
+    $_SESSION['doctor_name'] = $first_name . ' ' . $last_name;
+    $_SESSION['doctor_email'] = $email;
+    $_SESSION['doctor_specialization'] = $specialization;
+
+    // Redirect to index.php
+    header('Location: index.php');
+    exit; // Make sure to exit after redirection
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
@@ -32,4 +43,3 @@ if ($conn->query($sql) === TRUE) {
 // Close connection
 $conn->close();
 ?>
-<!-- create me a login page for doctor that would be used to compare credentials with that in the table in database -->

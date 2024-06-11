@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Signup - EMR System</title>
-    <link rel="stylesheet" href="css/style.css"> <!-- Include your CSS file here -->
+    <title>Login</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-           
+            
         }
         form {
             max-width: 400px;
@@ -58,31 +57,15 @@
     </style>
 </head>
 <body>
+    <h2> Admin Login</h2>
+    <form action="process_login.php" method="post">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
 
-    <!-- Doctor Signup Form Section -->
-    <section class="signup-form">
-        <div class="container">
-            <h2>Doctor Signup</h2>
-            <form action="process_doctor_signup.php" method="post">
-                <label for="first_name">First Name:</label>
-                <input type="text" id="first_name" name="first_name" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
 
-                <label for="last_name">Last Name:</label>
-                <input type="text" id="last_name" name="last_name" required><br><br>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required><br><br>
-
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required><br><br>
-
-                <label for="specialization">Specialization:</label>
-                <input type="text" id="specialization" name="specialization" required><br><br>
-
-                <input type="submit" value="Signup">
-            </form>
-        </div>
-    </section>
-
+        <input type="submit" value="Login">
+    </form>
 </body>
 </html>

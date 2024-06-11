@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Signup - EMR System</title>
-    <link rel="stylesheet" href="css/style.css"> <!-- Include your CSS file here -->
+    <title>Patient Signup</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-           
+            padding: 20px;
         }
         form {
             max-width: 400px;
@@ -58,31 +57,39 @@
     </style>
 </head>
 <body>
-
-    <!-- Doctor Signup Form Section -->
-    <section class="signup-form">
-        <div class="container">
-            <h2>Doctor Signup</h2>
-            <form action="process_doctor_signup.php" method="post">
-                <label for="first_name">First Name:</label>
-                <input type="text" id="first_name" name="first_name" required><br><br>
-
-                <label for="last_name">Last Name:</label>
-                <input type="text" id="last_name" name="last_name" required><br><br>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required><br><br>
-
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required><br><br>
-
-                <label for="specialization">Specialization:</label>
-                <input type="text" id="specialization" name="specialization" required><br><br>
-
-                <input type="submit" value="Signup">
-            </form>
+    <h2>Patient Signup</h2>
+    <form action="process_signup.php" method="post">
+        <div class="group">
+        <div class="field">
+        <label for="fname">First Name:</label>
+        <input type="text" id="fname" name="fname" required><br><br>
         </div>
-    </section>
+        <div class="field">
+        <label for="lname">Last Name:</label>
+        <input type="text" id="lname" name="lname" required><br><br>
+        </div>
+        </div>
+       <div class="field">
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required><br><br>
+        </div>
+        <div class="field">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
 
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" required><br><br>
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" required></textarea><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>

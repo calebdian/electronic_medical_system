@@ -1,13 +1,14 @@
 <?php
+session_start(); // Start or resume session
 // Retrieve form data
 $email = $_POST['email'];
 $password = $_POST['password'];
 
 // Database connection (replace these with your database credentials)
 $servername = "localhost";
-$username = "your_username";
-$password_db = "your_password";
-$dbname = "your_database_name";
+$username = "root";
+$password_db = "";
+$dbname = "electronic_medical_system";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password_db, $dbname);
@@ -27,9 +28,23 @@ if ($result->num_rows > 0) {
     $stored_password = $row['password']; // Assuming password is stored in the 'password' column
 
     // Verify password
-    if (password_verify($password, $stored_password)) {
+    if ($password == $row['password'])  {
         echo "Login successful!";
         // Perform additional actions (e.g., session management)
+        $getUserSQL = "SELECT * FROM patients WHERE email = '$email'";
+        $result = $conn->query($getUserSQL);
+    
+        if ($result->num_rows > 0) {
+            // Fetch user data
+            $user = $result->fetch_assoc();
+    
+            // Store user data in a session variable
+            $_SESSION['user'] = $user;
+    
+            // Redirect user to index.php or any other page
+            header("Location: index.php");
+            exit; // Ensure that no other code is executed after redirection
+        }
     } else {
         echo "Incorrect password. Please try again.";
     }

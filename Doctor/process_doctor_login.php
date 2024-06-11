@@ -1,9 +1,10 @@
 <?php
+session_start();
 // Database connection details
 $servername = "localhost";
-$username = "your_username";
-$password = "your_password";
-$dbname = "your_database_name";
+$username = "root";
+$password = "";
+$dbname = "electronic_medical_system";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -15,20 +16,34 @@ if ($conn->connect_error) {
 
 // Retrieve form data
 $email = $_POST['email'];
-$password = $_POST['password'];
+$password_input = $_POST['password'];
 
 // SQL query to retrieve user with matching email
-$sql = "SELECT * FROM Medics WHERE email = '$email'";
-$result = $conn->query($sql);
+$sql = "SELECT * FROM medics WHERE email = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     // User found, verify password
     $row = $result->fetch_assoc();
-    if (password_verify($password, $row['password'])) {
-        // Password is correct, redirect to dashboard or desired page
-        echo "Login successful. Redirecting to dashboard...";
+    if (password_verify($password_input, $row['password'])) {
+        // Password is correct
+        // Assigning values to variables
+        $medic_id = $row['medic_id'];
+        $first_name = $row['first_name'];
+        $last_name = $row['last_name'];
+        $specialization = $row['specialization'];
+        
+        // Storing data in session variables
+        $_SESSION['doctor_id'] = $medic_id;
+        $_SESSION['doctor_name'] = $first_name . ' ' . $last_name;
+        $_SESSION['doctor_email'] = $email;
+        $_SESSION['doctor_specialization'] = $specialization;
+        
         // Redirect to dashboard page
-        header("Location: doctor_dashboard.php");
+        header("Location: index.php");
         exit();
     } else {
         // Incorrect password
